@@ -1,0 +1,82 @@
+it should answers below question for each matrix.
+1.The categories of performance matrix?
+2. what are the popular performance matrix?
+3. What it measure for Each performance matrix?
+4. what are the good value for each matrix?
+5. what are the good ways for improve each Matrix?
+
+1.
+Categories of measurements. 
+    Each matrix belongs to.
+
+    loading and Render speed:  LCP, FCP,
+
+    Responsiveness: TBT, INP, 
+
+    network: TTFB,
+
+    Layout stability: CLS.
+
+2. 3.
+    LCP, the largest contentful paint, measures how long it takes for main content to appear.
+    FCP, the first contentful paint, measures how long it takes for the first pixel to appear.
+    TTFB, measure the network latency and server Responsiveness.
+        If this is High, meaning backend, and CDN is the bottleneck
+
+    TBT, the total blocking time, measures how much time your main thread is blocked by JS. 
+        High TBT mean yours javascript bundle is too heavy.
+    INP, measures how quickly your website responds to users' click or taps.
+
+
+    CLS, measures that if your element jumps while loading.
+   
+
+4.
+    LCP: largest contentful paint < 2.5S
+    INP: interaction to next paint < 200ms
+    CLS : cumulative layout shift < 0.1
+
+5.
+    ways to optimize the Each matrix
+
+    LCP:
+        1. Use preload attribute for link tag  or fetchpriority='high' for main element to tell the browser to load the asset with the highest priority.
+
+        2. use CDN that closer to users physical address to improve the loading, this also improves the TTFB.
+
+        3. Use Webp format and brottli to compress the image, which can shrink the size of images for 30%.
+
+        4. Using SSR to render the page that are content heavy, the backend can send the full HTML, 
+        and the browser can render the LCP element before it touches one line of javascript.
+    
+    INP & TBT 
+
+        1. Use code spliting, dont send the entire app's JS in one main.js bundle. 
+        Use dynamic lazy loading to load the code that are needed in current route.
+    
+        2.  Use webworker to do the heavy data processing. 
+        This allow the main thread to handle scroll and clicks
+
+        3. Debouncing and throttling. limit the high frequency event 
+        such as window (resizing and scroll ) to prevent triggering expensive rerenders 60 times a second.
+
+        4. Yield to main thread. Basically break the long javascript task into smaller chunks using setTimeout, 
+        This allows the browser to sneak into an input response between gap of JS execution.
+
+    CLS:
+        The elements jump when browser does not know know how much space the your elements would take.
+
+        1. use width and height for the img tag to reserve the space need for the image, and the text wont jump when the image arrives.
+        2. never inserting content above the existing content. Ex. dont insert a header after your main content is loaded,
+        if you have to do that, reserve that space.
+        3. font preloading, use font-display: swap to preload your brand of font, so it would prevent flash of unstyled text, when custom font finally kicks in.
+
+
+optimization level                       techniques                            impacted matrix
+
+network                           HTTP/3, brottli, CDN                              LCP, TTFB
+resource                          preload, priority hints, image format,             LCP, FCP          
+parsing                            Defer/async JS, CSS minification,                 TBT, FCP
+layout                            Aspect Ration, skeleton UI, font swap                 CLS
+execution               webworker, code spliting, memorization,debounce/throttling     INP, TBT
+                        yield to main thread/ setTimeout

@@ -1,0 +1,55 @@
+WCAG 2.1 AA standard. 
+POUR 
+1. perceivable
+    High contrast, the normal text should have 4.5 : 1 contrast ratio, and large text should have 3 : 1 contrast ratio
+    Reflow, the content should be able to zoom to 400% without horizontal scrolling on the desktop
+    resize text, the text should be scroll to 200% without losing content or funcnationalies.
+
+    ALT text, provide text alternative to all the non text content (image, button, icons).
+    video caption, provided sychronized caption for all the prerecorded audio content in video.
+    
+    All audio should have a text transcript.
+
+    If the audio plays for >3 seconds, it must be a way to pause or stop it immediately.
+    
+2. operable
+    Many users dont use mouse, so the all functionalies must be tabbable solely use keyboard.
+
+    Focus visible, the focused element must not be hide by other elements(such as sticky headers).
+    The keyboard focus indicator must be visible, and focus blue ring wont be suppress without another alternative.
+
+    Target size, the size must be at least 24px * 24px for a minimum requirement, 44px * 44px for best practice,
+    48px * 48px for mobile button.
+
+    Focus trap, if you open a drawer or modal, you must be able to trap the focus within the modal,
+    so the users wont tab into the background.
+        - how to do that? 
+            1. get all the tabable elements, 2. find the first and last element,3. if last element, and 
+            users press Tab, then go to first element, if first element, press shift + tab, go to last element,
+            4. always listen for the escape to leave the focus trap.
+
+    keyboard shortcuts, if there are custom hotkeys are used for, there are must be a way to disable or remap it.
+90ot
+    Skip links: For app with heavy side bars, use skip to main contetnt link that is hidden unless it is focused by keyboard.
+
+3. Understandable
+    1.Language of page, identify the primary language of HTML code. (<html lang='en'>)
+
+    2.redundant of entry, if the users has already entered their address in step 1, 
+    you must not make them type it again, it must be auto populated or selectable.
+
+    3.Accessbible authentication: cannot solely based on cognition function tests 
+    (such as remembering a password and solving a puzzle/CAPTCHA)
+    For people has memory issues such as ADHD,
+    Should support alternative authentication(passkeys, magic links, 2FA vs hardware keys);
+
+    4.error identification, and error suggestions:
+    if an input error is made, the item is identified and error is described by text to users.
+    If correction for errors are known, provided to users.
+
+    5.Consistent location, for FAQ, help, navigation and chatbot, 
+    it should consistently show in relative position across all pages;
+
+
+4. robustness
+
