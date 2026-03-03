@@ -40,7 +40,7 @@ POUR
 
     3.Accessbible authentication: cannot solely based on cognition function tests 
     (such as remembering a password and solving a puzzle/CAPTCHA)
-    For people has memory issues such as ADHD,
+    For people has memory issues or has ADHD,
     Should support alternative authentication(passkeys, magic links, 2FA vs hardware keys);
 
     4.error identification, and error suggestions:
@@ -52,4 +52,42 @@ POUR
 
 
 4. robustness
+   ensure there is a lang attribute in the HTML tag to let assisted technologies to understand
+   what language it should use. 
 
+   Clean code:  Ensure the HTML code has no duplicated ID, and tags are nested correctly,
+   so the assisted technologies could interpret it correctly.
+
+   Ensure each element has a correct role and value, such as role='switch' and aria-checked="true"
+    to programatically communicate its identity.
+
+   Status message: When there is a status change, such as add the item to cart, must use aria-live=
+    "polite" to notify user.
+
+
+Scalable A11y
+
+1. Accessbible  by default
+    Create an accessible basic component by default, so when the team expands, it does not need to recreate
+    the component as it may forget to add the aria-label, they can reuse the Scalable component. 
+    so if there is a reusable accessible molecule,
+    the organism would be also considered as accessible.
+
+2. A11y rot 
+    the website may launch with 100% accessbility, but after a few months, after a few quick fixes and updates of new 
+    features, the accessibility quickly drop;
+    scalable A11y needs to adopt automated guardrail to prevent this.
+    -lint check, catching a missing alt tag bug.
+    -CI/CD checks, if there is a new pull requrest drops the lighthouse A11y score beloew 90, the code is blocked from merging.
+    -Result, the user would never seen a broken version of the site, because the system caught it first.
+
+3. consistentcy for usability
+
+    users may got confuse if the button with same functionalies dont have same labels.
+    
+    so ensure 
+    - uniform labels 
+        all the close buttons across the entire app behave exactly the same way.
+    and
+    - predictable patterns
+        once users learn your app languge once, it should work in everyway.
