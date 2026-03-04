@@ -1,0 +1,61 @@
+
+ 
+1. avoid string concenation, use interpolation instead
+    - translator may not adjust the position of verb, since language like Japanese, 
+    it places the verbs at the very end of sentence.
+    using interpolation can let translator freely inject and move the variable in the target language format.
+
+2. ICU message format for pluralization.
+    without ICU message format, you need a lot of if else to handle plurals, 
+    in some languages like polish, it has many ways to describe plurals forms, which makes it more complicate.
+    t('Photos_count', ({count: 5}))
+    {
+        photos_count, {
+            count, plural, 
+            {
+                zero: 'no itemm',
+            }, 
+            {   one: '# item'},
+            {   other:"# items'}
+        }
+
+    }
+    
+
+3. presudo localization
+    using the language you want to test in the Ui during the development process to catch the bug.
+    1. some language are longer than english, so using the language !!!text format!!! to test if ui breaks with longer text.
+    2. some language are taller than english letters, testing the alphabet of that language could test if line height fits.
+    3. Some language like chinese requires a specifc encoding, so, write it, to test if utf-8 characters has properly encoding.
+
+4. RTL, LTR 
+
+    Some languages like arabic and hebrew is read from right to left, 
+
+        1. using marigin-inline-start, intead of margin-left, it ensures when the mode switchs to RTL,
+        the spacing automatically moving to the correct side.
+
+        2. Mirror the UI, not just text, but also the back arrow, icons,  progress bar and sidebar must mirror in RTL mode.
+
+        3. vertical expansion, some language have tallers characters, line height and container height must be flexible to prevent text clipping;
+
+
+5. Date & cultral formatting
+    1. using nrowser native Intl Api 
+    Intl.DateTimeFormat, Intl.NumberFormat to handle locale-specific 
+    formating without adding heavy libary weights.
+
+    2. timezone management, 
+    store the UTC time in the server, using the local time on the frontend.
+
+    3. address & name complexity,
+    Different countries have different addresses, the address format must be dynamic, 
+    some countries do not have state or zip code. they use province and zipcode instead.
+
+
+
+6. Scalable system,
+    lazy loading and code spliting, you dont load japanese translation for german users.
+    Dynamic import for the language pack.
+
+    

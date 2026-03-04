@@ -2,17 +2,25 @@ WCAG 2.1 AA standard.
 POUR 
 1. perceivable
     High contrast, the normal text should have 4.5 : 1 contrast ratio, and large text should have 3 : 1 contrast ratio
-    Reflow, the content should be able to zoom to 400% without horizontal scrolling on the desktop
-    resize text, the text should be scroll to 200% without losing content or funcnationalies.
+
+    Reflow,(zoom) the content should be able to zoom to 400%  without horizontal scrolling on the desktop
+
+    Resize text, the text should be scroll to 200% without losing content or funcnationalies.
 
     ALT text, provide text alternative to all the non text content (image, button, icons).
+
     video caption, provided sychronized caption for all the prerecorded audio content in video.
     
     All audio should have a text transcript.
-
     If the audio plays for >3 seconds, it must be a way to pause or stop it immediately.
+
+    Heading hierachy, esure a styling on each level of heading from <h1> to <h6> never skips one of them.
+    It serves better for screen reader a form of hierchy, that what belongs to what. Say, h2 is the title of section,
+    while h3 is subtitle of section
     
 2. operable
+    use <button> for action, and use <a> for navigation.
+
     Many users dont use mouse, so the all functionalies must be tabbable solely use keyboard.
 
     Focus visible, the focused element must not be hide by other elements(such as sticky headers).
@@ -30,7 +38,7 @@ POUR
 
     keyboard shortcuts, if there are custom hotkeys are used for, there are must be a way to disable or remap it.
 90ot
-    Skip links: For app with heavy side bars, use skip to main contetnt link that is hidden unless it is focused by keyboard.
+    Skip links: For app with heavy side bars, support a skip to main content link that is hidden unless it is focused by keyboard.
 
 3. Understandable
     1.Language of page, identify the primary language of HTML code. (<html lang='en'>)
@@ -52,6 +60,11 @@ POUR
 
 
 4. robustness
+  
+   Semantic HTML, dont use div but using <main> <nav> <header> <footer>. These tags has built in 
+   aria label and role which enables screen readers to skip the content, jump to section users want. It basically turns 
+   HTML into a readable map.
+
    ensure there is a lang attribute in the HTML tag to let assisted technologies to understand
    what language it should use. 
 
